@@ -1,0 +1,183 @@
+/* Set the background color and reset margin and padding for the body */
+body {
+    background-color: #e4e6e7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Add padding to the container */
+.container {
+    padding: 20px;
+
+}
+
+/* Style the box */
+.box {
+    width: 250px;
+    height: 450px;
+    background-color: #ffffff;
+    padding: 10px;
+    margin-left: 20px;
+
+}
+
+/* Style the heading */
+.box h2 {
+    color: #000000;
+}
+
+/* Style the heading element */
+.heading {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    color: #f09191;
+    font-size: 85px;
+    font-weight: normal;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Style the search box */
+.search-box {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    width: 552px;
+    height: 65px;
+    position: absolute;
+    top: 25%;
+    right: 23%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+
+}
+
+/* Style the search input text */
+.search-text {
+    width: 550px;
+    padding: 20px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    border: none;
+    outline: none;
+    color: #444444;
+}
+
+/* Style the search button */
+.search-button {
+    padding: 10px 20px;
+    background-color: #f09191;
+    color: #ffffff;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    right: 23%;
+}
+
+/* Style the message */
+.message {
+    position: relative;
+    color: #444444;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 450%;
+    left: 50%;
+    animation: scrolling-animation 2s infinite linear;
+}
+
+/* Add animation to the moving text */
+.moving-text {
+    animation: moveText 5s linear infinite;
+}
+
+@keyframes moveText {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(300px);
+    }
+}
+
+/* Style the list items */
+ul li {
+    list-style: none;
+    font-size: 17px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    left: 35%;
+    bottom: 240px;
+
+
+}
+
+/* Style the checkbox icon */
+ul li::before {
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    top: 18px;
+    left: 10px;
+}
+
+/* Style checked list items */
+ul li.checked {
+    color: #555;
+    text-decoration: line-through;
+}
+
+/* Change the checkbox icon for checked items */
+ul li.checked::before {
+    background-image: url(images/checked.png);
+}
+
+/* Style the close icon */
+ul li span.close-icon {
+    position: absolute;
+    right: auto;
+    top: 18px;
+    left: 90%;
+    font-size: 22px;
+    color: #090808;
+    line-height: 30px;
+    width: 25px;
+    cursor: pointer;
+    align-items: center;
+}
+
+/* Style the close icon on hover */
+ul li span.close-icon:hover {
+    background: #dedfe1;
+    color: #250cc8;
+}
+
+/* Style the list item */
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 20px 8px 12px 50px;
+    background: white;
+    font-size: 16px;
+    transition: 0.2s;
+    width: 514px;
+    height: 37px;
+    margin-left: 1px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: -3px;
+
+}
+
+.checked {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
