@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
+import { v4 as uuidv4 } from 'uuid';
 
 function TodoApp() {
     const [tasks, setTasks] = useState([]);
@@ -11,12 +12,15 @@ function TodoApp() {
         setTasks(initialTasks);
     }, []);
 
+
+
     const addTask = () => {
         if (searchInputValue === '') {
             alert('You must write something!');
             return;
         }
         const newTask = {
+            id: uuidv4(), // Generate a unique ID
             name: searchInputValue,
             status: 'active',
         };
@@ -26,9 +30,9 @@ function TodoApp() {
         setSearchInputValue('');
     };
 
-    const toggleTaskStatus = (taskIndex) => {
-        const updatedTasks = tasks.map((task, index) => {
-            if (index === taskIndex) {
+    const toggleTaskStatus = (taskId) => {
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === taskId) {
                 return {
                     ...task,
                     status: task.status === 'active' ? 'completed' : 'active',
@@ -40,11 +44,13 @@ function TodoApp() {
         saveData(updatedTasks);
     };
 
-    const deleteTask = (taskIndex) => {
-        const updatedTasks = tasks.filter((task, index) => index !== taskIndex);
+    const deleteTask = (taskId, event) => {
+        event.stopPropagation(); // Prevent event bubbling
+        const updatedTasks = tasks.filter((task) => task.id !== taskId);
         setTasks(updatedTasks);
         saveData(updatedTasks);
     };
+
 
     const saveData = (tasks) => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -70,18 +76,20 @@ function TodoApp() {
                     </button>
                 </div>
                 <ul id="list-container">
-                    {tasks.map((task, index) => (
-                        <li
-                            key={index}
-                            className={task.status === 'completed' ? 'checked' : ''}
-                            onClick={() => toggleTaskStatus(index)}
-                        >
-                            {task.name}
-                            <span className="close-icon" onClick={() => deleteTask(index)}>
-                                &times;
-                            </span>
-                        </li>
-                    ))}
+                    {
+                        tasks.map((task) => (
+                            <li
+                                key={task.id} // Use a unique identifier as the key
+                                className={task.status === 'completed' ? 'checked' : ''}
+                                onClick={() => toggleTaskStatus(task.id)}
+                            >
+                                {task.name}
+                                <span className="close-icon" onClick={(e) => deleteTask(task.id, e)}>
+                                    &times;
+                                </span>
+                            </li>
+                        ))
+                    }
                 </ul>
                 <p className="message">Double-click to edit a todo</p>
             </div>
